@@ -3,7 +3,7 @@ import ListContext from "../providers/ListContext";
 
 const Header = () => {
   const listContext = useContext(ListContext);
-
+  console.log("header", listContext);
   return (
     <div>
       <h1>Header</h1>

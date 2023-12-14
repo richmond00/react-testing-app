@@ -3,6 +3,7 @@ import ListContext from "../providers/ListContext";
 
 const List = () => {
   const listContext = useContext(ListContext);
+  console.log("list", listContext);
   return (
     <div>
       <h3>List</h3>

@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import ListContext from "../providers/ListContext";
 
 const List = () => {
+  const listContext = useContext(ListContext);
   return (
     <div>
       <h3>List</h3>
       <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
+        {listContext.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
       </ul>
     </div>
   );

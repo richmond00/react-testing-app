@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { render, screen } from "@testing-library/react";
 import Header from "./Header";
-import ListContext from "../providers/ListContext";
+import ListContext from "../lib/providers/ListContext";
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),

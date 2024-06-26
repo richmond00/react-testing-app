@@ -1,3 +1,4 @@
+import { QueryFunction, QueryKey } from "@tanstack/react-query";
 import { SVC_URL } from "./consts";
 
 export async function fetchPosts(pageNum: number) {
@@ -5,7 +6,8 @@ export async function fetchPosts(pageNum: number) {
     return response.json();
 }
 
-export async function fetchComments(postId: number) {
+export async function fetchComments({ queryKey }: { queryKey: QueryKey }) {
+    const [_, postId] = queryKey;
     const response = await fetch(`${SVC_URL}/comments?postId=${postId}`);
     return response.json();
 }

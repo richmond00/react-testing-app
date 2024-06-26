@@ -11,7 +11,7 @@ export function Posts() {
 
     const { data, isError, error, isLoading } = useQuery({
         queryKey: ["post"],
-        queryFn: () => fetchPosts(1),
+        queryFn: () => fetchPosts(currentPage),
         staleTime: 2000
     });
 

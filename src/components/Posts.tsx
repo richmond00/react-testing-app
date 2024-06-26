@@ -14,14 +14,14 @@ export function Posts() {
         if (currentPage < maxPostPage) {
             const nextPage = currentPage + 1;
             queryClient.prefetchQuery({
-                queryKey: ["post", nextPage],
+                queryKey: ["posts", nextPage],
                 queryFn: () => fetchPosts(nextPage),
             });
         }
     }, [currentPage, queryClient]);
 
     const { data, isError, error, isLoading } = useQuery({
-        queryKey: ["post", currentPage],
+        queryKey: ["posts", currentPage],
         queryFn: () => fetchPosts(currentPage),
         staleTime: 2000
     });

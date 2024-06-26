@@ -1,4 +1,4 @@
-import { QueryFunction, QueryKey } from "@tanstack/react-query";
+import { QueryKey } from "@tanstack/react-query";
 import { SVC_URL } from "./consts";
 
 export async function fetchPosts(pageNum: number) {

@@ -6,15 +6,15 @@ import { PostDetail } from "./PostDetail";
 const maxPostPage = 10;
 
 export function Posts() {
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [selectedPost, setSelectedPost] = useState(null);
 
     const { data, isError, error, isLoading } = useQuery({
-        queryKey: ["post"],
+        queryKey: ["post", currentPage],
         queryFn: () => fetchPosts(currentPage),
         staleTime: 2000
     });
-
+   
     if (isLoading) {
         return <h3>Loading...</h3>;
     }
@@ -37,9 +37,9 @@ export function Posts() {
                 ))}
             </ul>
             <div className="pages">
-                <button disabled onClick={() => {}}>Previous page</button>
-                <span>Page {currentPage + 1}</span>
-                <button disabled onClick={() => {}}>Next page</button>
+                <button disabled={currentPage <= 1} onClick={() => setCurrentPage((prev) => prev - 1)}>Previous page</button>
+                <span>Page {currentPage}</span>
+                <button disabled={currentPage >= maxPostPage} onClick={() => setCurrentPage((prev) => prev + 1)}>Next page</button>
             </div>
             <hr />
             {selectedPost && <PostDetail post={selectedPost} />}

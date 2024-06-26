@@ -2,7 +2,7 @@ import { QueryFunction, QueryKey } from "@tanstack/react-query";
 import { SVC_URL } from "./consts";
 
 export async function fetchPosts(pageNum: number) {
-    const response = await fetch(`${SVC_URL}/posts?_limit=10&page=${pageNum}`);
+    const response = await fetch(`${SVC_URL}/posts?_limit=10&_page=${pageNum}`);
     return response.json();
 }
 

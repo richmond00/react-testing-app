@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { fetchPosts, deletePost } from "../lib/api";
+import { fetchPosts, deletePost, updatePost } from "../lib/api";
 import { PostDetail } from "./PostDetail";
 
 const maxPostPage = 10;
@@ -27,6 +27,9 @@ export function Posts() {
     });
     const deleteMutation = useMutation({
         mutationFn: (postId) => deletePost(postId!)
+    });
+    const updateMutation = useMutation({
+        mutationFn: (postId) => updatePost(postId!)
     })
    
     if (isLoading) {
@@ -47,6 +50,7 @@ export function Posts() {
                 {data.map((post: any) => (
                     <li key={post.id} className="post-title" onClick={() => {
                         deleteMutation.reset();
+                        updateMutation.reset();
                         setSelectedPost(post);
                     }}>
                         {post.title}
@@ -59,7 +63,7 @@ export function Posts() {
                 <button disabled={currentPage >= maxPostPage} onClick={() => setCurrentPage((prev) => prev + 1)}>Next page</button>
             </div>
             <hr />
-            {selectedPost && <PostDetail post={selectedPost} deleteMutation={deleteMutation} />}
+            {selectedPost && <PostDetail post={selectedPost} deleteMutation={deleteMutation} updateMutation={updateMutation} />}
         </>
     )
 }
